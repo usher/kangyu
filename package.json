@@ -1,0 +1,20 @@
+{
+  "name": "kangyu",
+  "version": "1.0.0",
+  "description": "kangyu h5",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Usher",
+  "license": "MIT",
+  "devDependencies": {
+    "css-loader": "^0.21.0",
+    "postcss-loader": "^2.1.4",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.2"
+  }
+}
