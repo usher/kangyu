@@ -1,0 +1,9 @@
+body {
+    background: #fff;
+    max-width: 414px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+}

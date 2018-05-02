@@ -4,7 +4,11 @@
   "description": "kangyu h5",
   "main": "bundle.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js --env=dev",
+    "clean": "rimraf ../public/system/static && rimraf ../public/system/fonts && rimraf ../public/system/view",
+    "pre": "npm run clean && copyfiles -f ./favicon.ico ../public/system",
+    "fonts": "copyfiles -f ./fonts/* ../public/system/fonts",
+    "all": "npm run pre && webpack --env=dev && npm run fonts"
   },
   "keywords": [
     "webpack"
@@ -12,9 +16,30 @@
   "author": "Usher",
   "license": "MIT",
   "devDependencies": {
+    "babel-core": "~6.26.0",
+    "babel-loader": "~7.1.2",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
     "css-loader": "^0.21.0",
-    "postcss-loader": "^2.1.4",
-    "style-loader": "^0.13.0",
-    "webpack": "^1.12.2"
+    "file-loader": "^1.1.5",
+    "open": "0.0.5",
+    "postcss": "^6.0.16",
+    "postcss-custom-properties": "^6.2.0",
+    "postcss-import": "^11.0.0",
+    "postcss-loader": "^2.0.10",
+    "postcss-mixins": "^6.2.0",
+    "postcss-nested": "^3.0.0",
+    "postcss-simple-vars": "^4.1.0",
+    "postcss-will-change": "^2.0.0",
+    "rimraf": "~2.6.2",
+    "style-loader": "~0.19.1",
+    "url-loader": "~0.6.2",
+    "webpack": "~3.10.0",
+    "webpack-assets-manifest": "^1.0.0",
+    "webpack-bundle-analyzer": "^2.9.1",
+    "webpack-dev-server": "~2.10.0"
+  },
+  "dependencies": {
+    "lodash.clonedeep": "^4.5.0"
   }
 }

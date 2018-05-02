@@ -1,0 +1,10 @@
+.q-items {
+    background-image: url(../img/bg-home.png);
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover;
+}
+
+.q-item {
+    background-image: url(../img/bg-q-item.png);
+}
