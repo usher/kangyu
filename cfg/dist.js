@@ -7,7 +7,7 @@ var baseConfig = require("./base");
 
 var config = Object.assign({}, cloneDeep(baseConfig), {
   entry: {
-    app: [path.join(__dirname, "../src/js/index")]
+    app: [path.join(__dirname, "../src/js/app")]
   },
   cache: false
 });

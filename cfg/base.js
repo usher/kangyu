@@ -1,59 +1,61 @@
-var path = require("path");
 var webpack = require("webpack");
-
+var path = require("path");
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var WebpackAssetsManifest = require("webpack-assets-manifest");
 var BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
 
-var args = require("minimist")(process.argv.slice(2));
-
-var port = 9000;
 var srcPath = path.resolve(__dirname, "../src");
 var publicPath = "/system/static/";
 
+var args = require("minimist")(process.argv.slice(2));
+
 var BaseConfig = {
   output: {
-    path: path.join(__dirname, "../public/" + publicPath),
-    filename: "[name].js",
-    publicPath: publicPath
+    path: path.resolve(__dirname, "../../public" + publicPath),
+    publicPath: publicPath,
+    filename: "app.js"
   },
   devServer: {
     contentBase: "./src/",
     historyApiFallback: true,
     hot: true,
-    port: port,
+    inline: true,
+    port: 9000,
     publicPath: publicPath,
     noInfo: false,
-    headers: { "Access-Control-Allow-Origin": "*" }
+    headers: { "Access-Control-Allow-Origin": "*" },
+    proxy: {
+      "/system": "http://localhost:9800"
+    }
   },
   resolve: {
-    extensions: [".js", ".jsx", ".css"],
+    extensions: [".js", ".css", ".pcss"],
     alias: {
       src: srcPath,
-      fonts: srcPath + "/fonts/",
-      css: srcPath + "/src/css",
-      js: srcPath + "/src/js",
-      config: srcPath + "/config/" + process.env.REACT_WEBPACK_ENV
+      font: srcPath + "/font",
+      js: srcPath + "/js",
+      css: srcPath + "/css",
     }
   },
   module: {
     rules: [
       {
-        test: /\.css$/,
-        use: [
-          {
-            loader: "style-loader"
-          },
-          {
-            loader: "css-loader",
-            options: {
-              minimize: true
+        test: /\.p?css$/,
+        use: ExtractTextPlugin.extract({
+          fallback: "style-loader",
+          use: [
+            {
+              loader: "css-loader",
+              options: {
+                minimize: true
+              }
+            },
+            {
+              loader: "postcss-loader"
             }
-          },
-          {
-            loader: "postcss-loader"
-          }
-        ]
+          ]
+        })
       },
       {
         test: /\.(jpe?g|png|gif|eot|ttf|woff|woff2|svg)(\?[0-9a-zA-Z=.]+)?$/,
@@ -67,7 +69,7 @@ var BaseConfig = {
         ]
       },
       {
-        test: /\.(js|jsx)$/,
+        test: /\.js$/,
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -82,6 +84,7 @@ var BaseConfig = {
   },
   cache: false,
   plugins: [
+    new ExtractTextPlugin("app.css"),
     new webpack.DefinePlugin({
       "process.env.NODE_ENV": '"production"'
     }),
