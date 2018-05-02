@@ -2,33 +2,76 @@
     margin: 16px 21px 0;
 }
 
-.q-items {
+.guide {
     background-image: url(../img/bg-home.png);
     background-repeat: no-repeat;
     background-position: top center;
     background-size: cover;
     padding-top: 74px;
+    padding-bottom: 38px;
+}
+
+.q-items {
 }
 
 .q-item {
+    position: relative;
     background-color: #fff;
     opacity: 0.8;
     border: 1px solid transparent;
     border-radius: 8px;
     margin: 0 6px;
     margin-bottom: 33px;
+    min-height: 172px;
     .item-title {
+        font-family: "PingFangSC-Medium", var(--font-fallback);
         font-size: 19px;
         color: #41ABCB;
+        margin-top: 60px;
         margin-bottom: 5px;
         line-height:26px;
+        padding-left: 20px;
     }
     p {
-        color:rgba(109,109,109,1);
+        font-family: "PingFangSC-Medium", var(--font-fallback);
         font-size: 15px;
+        padding-left: 20px;
+        color: #6D6D6D;
         line-height:21px;
     }
     .item-ikon {
         position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+
+.recharge-btn {
+    margin-top: 40px;
+    a {
+        display: block;
+        position: relative;
+        font-family: "PingFangSC-Medium", var(--font-fallback);
+        font-size: 20px;
+        width: 314px;
+        height: 50px; 
+        line-height: 50px;
+        background: #fff;
+        border-radius: 36px; 
+        margin: 0 auto;
+        text-align: center;
+        color: rgba(43,183,206,1);
+        &:after {
+            content: "";
+            display: block;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            right: -5px;
+            bottom: -5px;
+            background: #80F3DF;
+            border-radius: 36px ;
+            z-index: -1;
+        }
     }
 }
