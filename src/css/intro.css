@@ -1,0 +1,6 @@
+.intro-banner {
+    width: 100%;
+    background-image: url(../img/bg-intro.png);
+    background-size: cover;
+    padding-bottom: 78.4%;
+}
